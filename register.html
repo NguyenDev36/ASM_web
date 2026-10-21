@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng ký - CS2 Arsenal</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="header">
+    <div class="container nav-box">
+        <a class="logo" href="index.html">CS2 <span>ARSENAL</span></a>
+        <button class="menu-btn" id="menuBtn">☰</button>
+        <nav id="mainNav">
+            <a href="index.html">Trang chủ</a>
+            <a href="detail.html?weapon=ak47">Vũ khí</a>
+            <a class="active" href="register.html">Đăng ký</a>
+            <a href="login.html">Đăng nhập</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <section class="form-section">
+        <div class="form-card">
+            <p class="small-title">CS2 ARSENAL ACCOUNT</p>
+            <h1>ĐĂNG KÝ</h1>
+            <p class="form-note">Tạo tài khoản demo cho website Frontend.</p>
+
+            <form id="registerForm">
+                <label for="registerName">Họ và tên</label>
+                <input id="registerName" type="text" placeholder="Nguyễn Văn A">
+
+                <label for="registerEmail">Email</label>
+                <input id="registerEmail" type="email" placeholder="example@gmail.com">
+
+                <label for="registerPassword">Mật khẩu</label>
+                <div class="password-box">
+                    <input id="registerPassword" type="password" placeholder="Ít nhất 6 ký tự">
+                    <button type="button" class="show-password" data-target="registerPassword">Hiện</button>
+                </div>
+
+                <label for="registerConfirm">Nhập lại mật khẩu</label>
+                <div class="password-box">
+                    <input id="registerConfirm" type="password" placeholder="Nhập lại mật khẩu">
+                    <button type="button" class="show-password" data-target="registerConfirm">Hiện</button>
+                </div>
+
+                <button class="btn full-btn" type="submit">TẠO TÀI KHOẢN</button>
+                <p id="registerMessage" class="form-message"></p>
+            </form>
+
+            <p class="switch-form">Đã có tài khoản? <a href="login.html">Đăng nhập</a></p>
+        </div>
+    </section>
+</main>
+
+<footer class="footer">
+    <div class="copyright">© 2026 CS2 Arsenal</div>
+</footer>
+
+<script src="js/script.js"></script>
+</body>
+</html>

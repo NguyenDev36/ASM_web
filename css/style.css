@@ -1,0 +1,806 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #0f1012;
+    color: #f5f5f5;
+    line-height: 1.6;
+}
+
+a {
+    color: inherit;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+.container {
+    width: 90%;
+    max-width: 1150px;
+    margin: 0 auto;
+}
+
+/* HEADER */
+.header {
+    background: #15171a;
+    border-bottom: 1px solid #2b2e33;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.nav-box {
+    min-height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.logo {
+    text-decoration: none;
+    font-weight: 900;
+    font-size: 22px;
+    letter-spacing: 1px;
+}
+
+.logo span {
+    color: #f2b632;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+}
+
+nav a {
+    text-decoration: none;
+    font-size: 14px;
+    color: #c8c8c8;
+}
+
+nav a:hover,
+nav a.active {
+    color: #f2b632;
+}
+
+.menu-btn {
+    display: none;
+    border: 1px solid #383c42;
+    background: #202329;
+    color: white;
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+/* HERO */
+.hero {
+    min-height: 520px;
+    display: flex;
+    align-items: center;
+    background:
+        radial-gradient(circle at 80% 30%, rgba(242,182,50,0.13), transparent 30%),
+        linear-gradient(135deg, #101114, #1a1c20);
+    border-bottom: 1px solid #2b2e33;
+}
+
+.hero-content {
+    display: grid;
+    grid-template-columns: 1.4fr 0.9fr;
+    gap: 50px;
+    align-items: center;
+}
+
+.small-title {
+    color: #f2b632;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+}
+
+.hero h1 {
+    font-size: 48px;
+    line-height: 1.05;
+    margin: 10px 0 20px;
+}
+
+.hero h1 span {
+    color: #f2b632;
+}
+
+.hero-text > p:not(.small-title) {
+    color: #b8bcc2;
+    max-width: 620px;
+}
+
+.btn {
+    display: inline-block;
+    margin-top: 16px;
+    padding: 13px 22px;
+    border: none;
+    background: #f2b632;
+    color: #111;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background: #ffd26a;
+}
+
+.hero-card {
+    height: 290px;
+    border: 1px solid #373b42;
+    background: linear-gradient(145deg, #22262c, #121417);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
+}
+
+.hero-gun {
+    font-size: 52px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    transform: rotate(-7deg);
+}
+
+.hero-card p {
+    color: #f2b632;
+    letter-spacing: 2px;
+}
+
+/* SECTIONS */
+.section {
+    padding: 80px 0;
+}
+
+.dark-section {
+    background: #15171a;
+}
+
+.section-title p {
+    color: #f2b632;
+    margin: 0;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.section-title h2 {
+    margin-top: 5px;
+    font-size: 32px;
+}
+
+.about-grid {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+}
+
+.info-box {
+    background: #191c20;
+    border: 1px solid #2d3137;
+    padding: 28px;
+}
+
+.info-box h3 {
+    margin-top: 0;
+}
+
+.info-box p {
+    color: #b7bbc1;
+}
+
+/* CATEGORY */
+.category-grid {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 15px;
+}
+
+.category-card {
+    min-height: 150px;
+    background: #1d2025;
+    color: white;
+    border: 1px solid #353941;
+    padding: 20px;
+    text-align: left;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.category-card:hover,
+.category-card.selected {
+    border-color: #f2b632;
+    transform: translateY(-3px);
+}
+
+.category-card span {
+    color: #777d86;
+    font-size: 12px;
+}
+
+.category-card strong {
+    font-size: 20px;
+}
+
+.category-card small {
+    color: #9ca1a8;
+}
+
+/* WEAPONS */
+.toolbar {
+    margin: 30px 0;
+    display: flex;
+    gap: 12px;
+}
+
+.toolbar input,
+.toolbar select,
+.form-card input,
+.form-card textarea {
+    width: 100%;
+    padding: 13px 14px;
+    background: #17191d;
+    border: 1px solid #343840;
+    color: white;
+    outline: none;
+}
+
+.toolbar input:focus,
+.toolbar select:focus,
+.form-card input:focus,
+.form-card textarea:focus {
+    border-color: #f2b632;
+}
+
+.toolbar input {
+    flex: 1;
+}
+
+.toolbar select {
+    width: 190px;
+}
+
+.weapon-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+}
+
+.weapon-card {
+    background: #191c20;
+    border: 1px solid #2f3339;
+    overflow: hidden;
+    transition: 0.2s;
+}
+
+.weapon-card:hover {
+    transform: translateY(-4px);
+    border-color: #f2b632;
+}
+
+.weapon-image {
+    height: 145px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:
+        radial-gradient(circle, rgba(242,182,50,0.12), transparent 55%),
+        #111317;
+    border-bottom: 1px solid #2d3136;
+}
+
+.weapon-image span {
+    font-weight: 900;
+    font-size: 28px;
+    letter-spacing: 1px;
+    transform: rotate(-6deg);
+}
+
+.weapon-body {
+    padding: 18px;
+}
+
+.weapon-body .tag {
+    display: inline-block;
+    font-size: 11px;
+    background: #2b2f34;
+    color: #f2b632;
+    padding: 3px 7px;
+}
+
+.weapon-body h3 {
+    margin: 10px 0 3px;
+}
+
+.weapon-body p {
+    margin: 0 0 14px;
+    color: #aeb2b8;
+    font-size: 14px;
+}
+
+.weapon-link {
+    color: #f2b632;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.empty-message {
+    display: none;
+    color: #aeb2b8;
+    padding: 20px 0;
+}
+
+/* PAGE BANNER */
+.page-banner {
+    padding: 75px 0;
+    background: linear-gradient(135deg, #15171a, #1f2228);
+    border-bottom: 1px solid #2b2e33;
+}
+
+.page-banner p {
+    color: #f2b632;
+    letter-spacing: 2px;
+    font-size: 13px;
+}
+
+.page-banner h1 {
+    margin: 5px 0 0;
+    font-size: 42px;
+}
+
+/* DETAIL */
+.detail-layout {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 40px;
+    align-items: start;
+}
+
+.detail-image {
+    min-height: 380px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:
+        radial-gradient(circle, rgba(242,182,50,0.13), transparent 55%),
+        #15171a;
+    border: 1px solid #343840;
+}
+
+.detail-image span {
+    font-size: 55px;
+    font-weight: 900;
+    transform: rotate(-7deg);
+}
+
+.detail-content .tag {
+    color: #f2b632;
+    font-size: 13px;
+    letter-spacing: 1px;
+}
+
+.detail-content h1 {
+    font-size: 46px;
+    margin: 10px 0;
+}
+
+.detail-content > p {
+    color: #b9bdc3;
+}
+
+.stats-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 25px;
+}
+
+.stats-table td {
+    border-bottom: 1px solid #2d3137;
+    padding: 12px;
+}
+
+.stats-table td:first-child {
+    color: #8f959d;
+    width: 35%;
+}
+
+.detail-note {
+    margin-top: 25px;
+    padding: 15px;
+    border-left: 3px solid #f2b632;
+    background: #191c20;
+    color: #b8bcc2;
+}
+
+/* FORMS */
+.form-section {
+    min-height: calc(100vh - 72px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 20px;
+}
+
+.form-card {
+    width: 100%;
+    max-width: 510px;
+    background: #191c20;
+    border: 1px solid #343840;
+    padding: 35px;
+}
+
+.form-card h1 {
+    margin: 5px 0;
+}
+
+.form-note {
+    color: #949aa2;
+    font-size: 14px;
+}
+
+.form-card label {
+    display: block;
+    margin: 18px 0 7px;
+    font-size: 14px;
+}
+
+.password-box {
+    display: flex;
+    gap: 8px;
+}
+
+.password-box input {
+    flex: 1;
+}
+
+.show-password {
+    padding: 0 14px;
+    background: #2a2e34;
+    color: white;
+    border: 1px solid #3a3e46;
+    cursor: pointer;
+}
+
+.full-btn {
+    width: 100%;
+    margin-top: 24px;
+}
+
+.form-message {
+    min-height: 24px;
+    color: #f2b632;
+    margin-top: 12px;
+}
+
+.switch-form {
+    text-align: center;
+    color: #999fa7;
+    margin-top: 25px;
+}
+
+.switch-form a {
+    color: #f2b632;
+    text-decoration: none;
+}
+
+/* CONTACT */
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 45px;
+    align-items: start;
+}
+
+.contact-info h2 {
+    font-size: 34px;
+}
+
+.contact-info > p:not(.small-title) {
+    color: #adb1b7;
+}
+
+.contact-item {
+    border-bottom: 1px solid #2e3238;
+    padding: 18px 0;
+}
+
+.contact-item span {
+    display: block;
+    color: #777e87;
+    font-size: 12px;
+}
+
+.contact-item strong {
+    display: block;
+    margin-top: 4px;
+}
+
+.contact-card {
+    max-width: none;
+}
+
+/* FOOTER */
+.footer {
+    background: #0c0d0f;
+    border-top: 1px solid #2b2e33;
+}
+
+.footer-box {
+    padding: 35px 0;
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 50px;
+}
+
+.footer p {
+    color: #8f959d;
+}
+
+.footer-box > div:last-child a {
+    display: block;
+    color: #aeb3ba;
+    text-decoration: none;
+    margin: 5px 0;
+}
+
+.footer-box > div:last-child a:hover {
+    color: #f2b632;
+}
+
+.copyright {
+    text-align: center;
+    padding: 15px;
+    color: #6f747c;
+    font-size: 13px;
+    border-top: 1px solid #24272c;
+}
+
+/* MOBILE */
+@media (max-width: 900px) {
+    .weapon-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .category-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .hero-content,
+    .detail-layout,
+    .contact-grid,
+    .about-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero {
+        padding: 60px 0;
+    }
+
+    .hero-card {
+        height: 220px;
+    }
+}
+
+@media (max-width: 650px) {
+    .nav-box {
+        position: relative;
+    }
+
+    .menu-btn {
+        display: block;
+    }
+
+    nav {
+        display: none;
+        position: absolute;
+        right: 0;
+        top: 72px;
+        width: 220px;
+        padding: 15px;
+        background: #17191d;
+        border: 1px solid #33373e;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    nav.show {
+        display: flex;
+    }
+
+    nav a {
+        padding: 8px 5px;
+        width: 100%;
+    }
+
+    .hero h1 {
+        font-size: 36px;
+    }
+
+    .page-banner h1 {
+        font-size: 32px;
+    }
+
+    .toolbar {
+        flex-direction: column;
+    }
+
+    .toolbar select {
+        width: 100%;
+    }
+
+    .weapon-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .category-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-card {
+        padding: 24px;
+    }
+
+    .footer-box {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* FULL DATABASE ADDITIONS */
+.toolbar {
+    flex-wrap: wrap;
+}
+
+.toolbar input {
+    min-width: 220px;
+}
+
+.database-summary {
+    display: flex;
+    gap: 8px;
+    color: #8f959d;
+    margin-bottom: 20px;
+}
+
+.database-summary strong {
+    color: #f2b632;
+}
+
+.section-note {
+    color: #9da2aa;
+    margin-bottom: 25px;
+}
+
+.card-top,
+.detail-tags {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.team-tag {
+    display: inline-block;
+    font-size: 11px;
+    color: #d5d7da;
+    background: #2a2d32;
+    padding: 3px 7px;
+}
+
+.weapon-card.development {
+    border-style: dashed;
+}
+
+.dev-label {
+    display: block;
+    color: #f2b632;
+    font-size: 11px;
+    margin-bottom: 10px;
+}
+
+.equipment-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 15px;
+}
+
+.equipment-card {
+    background: #1b1e22;
+    border: 1px solid #30343a;
+    padding: 20px;
+}
+
+.equipment-card h3 {
+    margin: 10px 0 5px;
+}
+
+.equipment-card p {
+    color: #9fa4ab;
+    min-height: 72px;
+}
+
+.equipment-card strong {
+    color: #f2b632;
+    font-size: 13px;
+}
+
+.detail-tags {
+    justify-content: flex-start;
+}
+
+@media (max-width: 1000px) {
+    .equipment-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 650px) {
+    .equipment-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* REAL WEAPON IMAGES */
+.weapon-image img {
+    width: 94%;
+    height: 125px;
+    object-fit: contain;
+    display: block;
+}
+
+.image-fallback {
+    display: none;
+    color: #f2b632;
+    font-size: 27px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    text-align: center;
+    transform: rotate(-5deg);
+}
+
+.image-fallback.no-art {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.image-fallback.no-art small {
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: #777e87;
+    transform: rotate(5deg);
+}
+
+.detail-image img {
+    width: 96%;
+    max-width: 620px;
+    max-height: 340px;
+    object-fit: contain;
+}
+
+.detail-image .image-fallback {
+    font-size: 48px;
+}

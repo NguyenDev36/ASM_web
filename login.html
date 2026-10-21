@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng nhập - CS2 Arsenal</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="header">
+    <div class="container nav-box">
+        <a class="logo" href="index.html">CS2 <span>ARSENAL</span></a>
+        <button class="menu-btn" id="menuBtn">☰</button>
+        <nav id="mainNav">
+            <a href="index.html">Trang chủ</a>
+            <a href="detail.html?weapon=ak47">Vũ khí</a>
+            <a href="register.html">Đăng ký</a>
+            <a class="active" href="login.html">Đăng nhập</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <section class="form-section">
+        <div class="form-card">
+            <p class="small-title">WELCOME BACK</p>
+            <h1>ĐĂNG NHẬP</h1>
+            <p class="form-note">Đăng nhập bằng tài khoản demo đã đăng ký trên trình duyệt.</p>
+
+            <form id="loginForm">
+                <label for="loginEmail">Email</label>
+                <input id="loginEmail" type="email" placeholder="example@gmail.com">
+
+                <label for="loginPassword">Mật khẩu</label>
+                <div class="password-box">
+                    <input id="loginPassword" type="password" placeholder="Mật khẩu">
+                    <button type="button" class="show-password" data-target="loginPassword">Hiện</button>
+                </div>
+
+                <button class="btn full-btn" type="submit">ĐĂNG NHẬP</button>
+                <p id="loginMessage" class="form-message"></p>
+            </form>
+
+            <p class="switch-form">Chưa có tài khoản? <a href="register.html">Đăng ký ngay</a></p>
+        </div>
+    </section>
+</main>
+
+<footer class="footer">
+    <div class="copyright">© 2026 CS2 Arsenal</div>
+</footer>
+
+<script src="js/script.js"></script>
+</body>
+</html>
