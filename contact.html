@@ -3,92 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact - CS2 Arsenal</title>
+    <title>Liên hệ - CS2 Arsenal</title>
+    <meta name="description" content="Gửi góp ý hoặc câu hỏi cho CS2 Arsenal.">
+    <meta name="theme-color" content="#0c0e11">
+    <meta property="og:title" content="Liên hệ - CS2 Arsenal">
+    <meta property="og:description" content="Gửi góp ý hoặc câu hỏi cho CS2 Arsenal.">
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Be+Vietnam+Pro:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body data-page="contact">
+    <a class="skip-link" href="#main">Bỏ qua điều hướng</a>
+    <div id="siteHeader"></div>
 
-<header class="header">
-    <div class="container nav-box">
-        <a class="logo" href="index.html">CS2 <span>ARSENAL</span></a>
-        <button class="menu-btn" id="menuBtn">☰</button>
-        <nav id="mainNav">
-            <a href="index.html">Trang chủ</a>
-            <a href="detail.html?weapon=ak47">Vũ khí</a>
-            <a href="register.html">Đăng ký</a>
-            <a href="login.html">Đăng nhập</a>
-            <a class="active" href="contact.html">Contact</a>
-        </nav>
-    </div>
-</header>
+    <main id="main">
+        <section class="page-banner">
+            <div class="container">
+                <h1>Liên hệ</h1>
+                <p>Góp ý về dữ liệu vũ khí hoặc giao diện đều được hoan nghênh.</p>
+            </div>
+        </section>
 
-<main>
-    <section class="page-banner">
-        <div class="container">
-            <p>CS2 ARSENAL / CONTACT</p>
-            <h1>LIÊN HỆ</h1>
-        </div>
-    </section>
-
-    <section class="section">
-        <div class="container contact-grid">
-            <div class="contact-info">
-                <p class="small-title">GET IN TOUCH</p>
-                <h2>LIÊN HỆ VỚI CHÚNG TÔI</h2>
-                <p>
-                    Đây là biểu mẫu liên hệ demo cho bài tập Frontend.
-                    Vì website không có Backend nên nội dung gửi chỉ được xử lý
-                    ngay trên trình duyệt.
-                </p>
-
-                <div class="contact-item">
-                    <span>EMAIL</span>
-                    <strong>cs2arsenal@example.com</strong>
+        <section class="section" style="padding-top:40px">
+            <div class="container contact-grid">
+                <div class="contact-info">
+                    <h2>Gửi tin nhắn cho chúng tôi</h2>
+                    <p>
+                        Website chưa có Backend nên tin nhắn được lưu trong trình duyệt của bạn
+                        (localStorage) thay vì gửi đến máy chủ.
+                    </p>
+                    <div class="contact-item"><span>Email</span><strong>cs2arsenal@example.com</strong></div>
+                    <div class="contact-item"><span>Discord</span><strong>CS2 Arsenal Community</strong></div>
+                    <div class="contact-item"><span>Facebook</span><strong>CS2 Arsenal</strong></div>
                 </div>
 
-                <div class="contact-item">
-                    <span>DISCORD</span>
-                    <strong>CS2 Arsenal Community</strong>
-                </div>
+                <div class="form-card wide">
+                    <form id="contactForm" novalidate>
+                        <label for="contactName" style="margin-top:0">Họ và tên</label>
+                        <input id="contactName" type="text" placeholder="Nguyễn Văn A" autocomplete="name">
+                        <p class="field-error" id="contactNameError"></p>
 
-                <div class="contact-item">
-                    <span>FACEBOOK</span>
-                    <strong>CS2 Arsenal</strong>
+                        <label for="contactEmail">Email</label>
+                        <input id="contactEmail" type="email" placeholder="example@gmail.com" autocomplete="email">
+                        <p class="field-error" id="contactEmailError"></p>
+
+                        <label for="contactSubject">Chủ đề</label>
+                        <input id="contactSubject" type="text" placeholder="Bạn muốn trao đổi về điều gì?">
+                        <p class="field-error" id="contactSubjectError"></p>
+
+                        <label for="contactMessage">Nội dung</label>
+                        <textarea id="contactMessage" rows="6" maxlength="500" placeholder="Nhập nội dung..."></textarea>
+                        <p class="char-count"><span id="charCount">0</span>/500</p>
+                        <p class="field-error" id="contactMessageError"></p>
+
+                        <button class="btn full-btn" type="submit">Gửi tin nhắn</button>
+                        <p id="contactMessageText" class="form-message" role="alert"></p>
+                    </form>
                 </div>
             </div>
+        </section>
+    </main>
 
-            <div class="form-card contact-card">
-                <form id="contactForm">
-                    <label for="contactName">Họ và tên</label>
-                    <input id="contactName" type="text" placeholder="Nguyễn Văn A">
+    <div id="siteFooter"></div>
 
-                    <label for="contactEmail">Email</label>
-                    <input id="contactEmail" type="email" placeholder="example@gmail.com">
-
-                    <label for="contactSubject">Chủ đề</label>
-                    <input id="contactSubject" type="text" placeholder="Chủ đề liên hệ">
-
-                    <label for="contactMessage">Nội dung</label>
-                    <textarea id="contactMessage" rows="6" placeholder="Nhập nội dung..."></textarea>
-
-                    <button class="btn full-btn" type="submit">GỬI TIN NHẮN</button>
-                    <p id="contactMessageText" class="form-message"></p>
-                </form>
-            </div>
-        </div>
-    </section>
-</main>
-
-<footer class="footer">
-    <div class="container footer-box">
-        <div>
-            <a class="logo" href="index.html">CS2 <span>ARSENAL</span></a>
-            <p>Student Frontend Project.</p>
-        </div>
-    </div>
-    <div class="copyright">© 2026 CS2 Arsenal</div>
-</footer>
-
-<script src="js/script.js"></script>
+    <noscript><p style="padding:16px;text-align:center">Website cần bật JavaScript để hiển thị dữ liệu vũ khí.</p></noscript>
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/contact.js"></script>
 </body>
 </html>

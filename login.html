@@ -4,54 +4,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Đăng nhập - CS2 Arsenal</title>
+    <meta name="description" content="Đăng nhập vào CS2 Arsenal.">
+    <meta name="theme-color" content="#0c0e11">
+    <meta property="og:title" content="Đăng nhập - CS2 Arsenal">
+    <meta property="og:description" content="Đăng nhập vào CS2 Arsenal.">
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Be+Vietnam+Pro:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body data-page="login">
+    <a class="skip-link" href="#main">Bỏ qua điều hướng</a>
+    <div id="siteHeader"></div>
 
-<header class="header">
-    <div class="container nav-box">
-        <a class="logo" href="index.html">CS2 <span>ARSENAL</span></a>
-        <button class="menu-btn" id="menuBtn">☰</button>
-        <nav id="mainNav">
-            <a href="index.html">Trang chủ</a>
-            <a href="detail.html?weapon=ak47">Vũ khí</a>
-            <a href="register.html">Đăng ký</a>
-            <a class="active" href="login.html">Đăng nhập</a>
-            <a href="contact.html">Contact</a>
-        </nav>
-    </div>
-</header>
+    <main id="main">
+        <section class="form-section">
+            <div class="form-card">
+                <h1>Đăng nhập</h1>
+                <p class="form-note">Dùng tài khoản bạn đã đăng ký trên trình duyệt này.</p>
 
-<main>
-    <section class="form-section">
-        <div class="form-card">
-            <p class="small-title">WELCOME BACK</p>
-            <h1>ĐĂNG NHẬP</h1>
-            <p class="form-note">Đăng nhập bằng tài khoản demo đã đăng ký trên trình duyệt.</p>
+                <form id="loginForm" novalidate>
+                    <label for="loginEmail">Email</label>
+                    <input id="loginEmail" type="email" placeholder="example@gmail.com" autocomplete="email">
+                    <p class="field-error" id="loginEmailError"></p>
 
-            <form id="loginForm">
-                <label for="loginEmail">Email</label>
-                <input id="loginEmail" type="email" placeholder="example@gmail.com">
+                    <label for="loginPassword">Mật khẩu</label>
+                    <div class="password-box">
+                        <input id="loginPassword" type="password" placeholder="Mật khẩu" autocomplete="current-password">
+                        <button type="button" class="show-password" data-target="loginPassword">Hiện</button>
+                    </div>
+                    <p class="field-error" id="loginPasswordError"></p>
 
-                <label for="loginPassword">Mật khẩu</label>
-                <div class="password-box">
-                    <input id="loginPassword" type="password" placeholder="Mật khẩu">
-                    <button type="button" class="show-password" data-target="loginPassword">Hiện</button>
-                </div>
+                    <button class="btn full-btn" type="submit" id="loginSubmit">Đăng nhập</button>
+                    <p id="loginMessage" class="form-message" role="alert"></p>
+                </form>
 
-                <button class="btn full-btn" type="submit">ĐĂNG NHẬP</button>
-                <p id="loginMessage" class="form-message"></p>
-            </form>
+                <p class="switch-form">Chưa có tài khoản? <a href="register.html">Đăng ký ngay</a></p>
+            </div>
+        </section>
+    </main>
 
-            <p class="switch-form">Chưa có tài khoản? <a href="register.html">Đăng ký ngay</a></p>
-        </div>
-    </section>
-</main>
+    <div id="siteFooter"></div>
 
-<footer class="footer">
-    <div class="copyright">© 2026 CS2 Arsenal</div>
-</footer>
-
-<script src="js/script.js"></script>
+    <noscript><p style="padding:16px;text-align:center">Website cần bật JavaScript để hiển thị dữ liệu vũ khí.</p></noscript>
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/auth.js"></script>
 </body>
 </html>

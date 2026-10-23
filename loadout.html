@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lập kế hoạch mua - CS2 Arsenal</title>
+    <meta name="description" content="Nhập số tiền của round, chọn phe T hoặc CT và thử các bộ trang bị Counter-Strike 2.">
+    <meta name="theme-color" content="#0c0e11">
+    <meta property="og:title" content="Lập kế hoạch mua - CS2 Arsenal">
+    <meta property="og:description" content="Nhập số tiền của round, chọn phe T hoặc CT và thử các bộ trang bị Counter-Strike 2.">
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Be+Vietnam+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="loadout">
+    <a class="skip-link" href="#main">Bỏ qua điều hướng</a>
+    <div id="siteHeader"></div>
+
+    <main id="main">
+        <section class="page-banner">
+            <div class="container">
+                <h1>Lập kế hoạch mua</h1>
+                <p>Thử trước bộ trang bị cho round tiếp theo mà không cần vào game.</p>
+            </div>
+        </section>
+
+        <section class="section" style="padding-top:32px">
+            <div class="container">
+                <div class="loadout-controls">
+                    <div>
+                        <label id="sideLabel">Phe</label>
+                        <div class="seg" role="group" aria-labelledby="sideLabel">
+                            <button type="button" data-side="T" aria-pressed="true">T</button>
+                            <button type="button" data-side="CT" aria-pressed="false">CT</button>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="moneyInput">Số tiền hiện có ($)</label>
+                        <input id="moneyInput" type="number" min="0" max="16000" step="50" value="5000">
+                    </div>
+                    <div>
+                        <label id="presetLabel">Mẫu nhanh</label>
+                        <div class="presets" role="group" aria-labelledby="presetLabel" id="presets"></div>
+                    </div>
+                </div>
+
+                <div class="loadout-layout">
+                    <div id="buyGroups"></div>
+                    <aside class="loadout-summary" aria-live="polite">
+                        <h2>Bộ trang bị của bạn</h2>
+                        <ul id="loadoutList"></ul>
+                        <div class="money-line"><span>Tổng chi phí</span><span class="money" id="totalCost">$0</span></div>
+                        <div class="money-line big"><span>Còn lại</span><span class="money" id="remaining">$0</span></div>
+                        <button class="btn ghost full-btn" id="clearLoadout" type="button">Xóa bộ trang bị</button>
+                    </aside>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="siteFooter"></div>
+
+    <noscript><p style="padding:16px;text-align:center">Website cần bật JavaScript để hiển thị dữ liệu vũ khí.</p></noscript>
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/loadout.js"></script>
+</body>
+</html>

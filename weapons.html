@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh sách vũ khí - CS2 Arsenal</title>
+    <meta name="description" content="Tìm kiếm, lọc theo loại, phe và giá, sắp xếp toàn bộ vũ khí Counter-Strike 2.">
+    <meta name="theme-color" content="#0c0e11">
+    <meta property="og:title" content="Danh sách vũ khí - CS2 Arsenal">
+    <meta property="og:description" content="Tìm kiếm, lọc theo loại, phe và giá, sắp xếp toàn bộ vũ khí Counter-Strike 2.">
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Be+Vietnam+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="weapons">
+    <a class="skip-link" href="#main">Bỏ qua điều hướng</a>
+    <div id="siteHeader"></div>
+
+    <main id="main">
+        <section class="page-banner">
+            <div class="container">
+                <h1>Danh sách vũ khí</h1>
+                <p>Tìm kiếm, lọc và sắp xếp toàn bộ vũ khí trong database.</p>
+            </div>
+        </section>
+
+        <section class="section" style="padding-top:32px">
+            <div class="container">
+                <div class="toolbar">
+                    <input id="searchInput" type="search" placeholder="Tìm theo tên, loại, phe..." aria-label="Tìm vũ khí" autocomplete="off">
+                    <select id="sortSelect" aria-label="Sắp xếp">
+                        <option value="default">Sắp xếp: mặc định</option>
+                        <option value="price-asc">Giá tăng dần</option>
+                        <option value="price-desc">Giá giảm dần</option>
+                        <option value="name">Tên A-Z</option>
+                    </select>
+                    <select id="teamSelect" aria-label="Lọc theo phe">
+                        <option value="All">T + CT</option>
+                        <option value="T">Phe T (gồm dùng chung)</option>
+                        <option value="CT">Phe CT (gồm dùng chung)</option>
+                        <option value="Both">Chỉ loại dùng chung</option>
+                    </select>
+                </div>
+
+                <div class="chips" id="categoryChips" role="group" aria-label="Lọc theo loại vũ khí"></div>
+
+                <div class="filter-row">
+                    <label class="price-filter" for="priceRange">
+                        Giá tối đa
+                        <input id="priceRange" type="range" min="0" step="50" value="5200">
+                        <span class="money" id="priceLabel">$5,200</span>
+                    </label>
+                    <button class="chip" id="favOnly" type="button" aria-pressed="false">♥ Chỉ hiện yêu thích</button>
+                    <div class="view-toggle" role="group" aria-label="Kiểu hiển thị">
+                        <button type="button" data-view="grid" aria-pressed="true">Lưới</button>
+                        <button type="button" data-view="list" aria-pressed="false">Danh sách</button>
+                    </div>
+                </div>
+
+                <p class="result-info" id="resultInfo" aria-live="polite"></p>
+
+                <div id="weaponList" class="weapon-grid"></div>
+
+                <div class="empty-state" id="emptyMessage" hidden>
+                    <h3>Không tìm thấy vũ khí phù hợp</h3>
+                    <p>Thử bỏ bớt bộ lọc hoặc đổi từ khóa tìm kiếm.</p>
+                    <button class="btn ghost" id="resetFilters" type="button">Xóa tất cả bộ lọc</button>
+                </div>
+
+                <div class="load-more"><button class="btn ghost" id="loadMore" type="button" hidden>Xem thêm</button></div>
+            </div>
+        </section>
+    </main>
+
+    <div id="siteFooter"></div>
+
+    <noscript><p style="padding:16px;text-align:center">Website cần bật JavaScript để hiển thị dữ liệu vũ khí.</p></noscript>
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/weapons.js"></script>
+</body>
+</html>

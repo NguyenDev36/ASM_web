@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>So sánh vũ khí - CS2 Arsenal</title>
+    <meta name="description" content="So sánh tối đa 3 vũ khí Counter-Strike 2 về sát thương, tốc độ bắn, xuyên giáp và giá.">
+    <meta name="theme-color" content="#0c0e11">
+    <meta property="og:title" content="So sánh vũ khí - CS2 Arsenal">
+    <meta property="og:description" content="So sánh tối đa 3 vũ khí Counter-Strike 2 về sát thương, tốc độ bắn, xuyên giáp và giá.">
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Be+Vietnam+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="compare">
+    <a class="skip-link" href="#main">Bỏ qua điều hướng</a>
+    <div id="siteHeader"></div>
+
+    <main id="main">
+        <section class="page-banner">
+            <div class="container">
+                <h1>So sánh vũ khí</h1>
+                <p>Chọn tối đa 3 vũ khí. Giá trị tốt nhất ở mỗi hàng được tô sáng.</p>
+            </div>
+        </section>
+
+        <section class="section" style="padding-top:32px">
+            <div class="container">
+                <div class="compare-add">
+                    <select id="compareSelect" aria-label="Chọn vũ khí để so sánh"></select>
+                    <button class="btn" id="compareAddBtn" type="button">Thêm vào so sánh</button>
+                    <button class="btn ghost" id="compareClearBtn" type="button">Xóa tất cả</button>
+                    <button class="btn ghost" id="compareShareBtn" type="button">Sao chép liên kết</button>
+                </div>
+                <div id="compareArea"></div>
+            </div>
+        </section>
+    </main>
+
+    <div id="siteFooter"></div>
+
+    <noscript><p style="padding:16px;text-align:center">Website cần bật JavaScript để hiển thị dữ liệu vũ khí.</p></noscript>
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/compare.js"></script>
+</body>
+</html>

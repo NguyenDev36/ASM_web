@@ -4,63 +4,65 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Đăng ký - CS2 Arsenal</title>
+    <meta name="description" content="Tạo tài khoản CS2 Arsenal.">
+    <meta name="theme-color" content="#0c0e11">
+    <meta property="og:title" content="Đăng ký - CS2 Arsenal">
+    <meta property="og:description" content="Tạo tài khoản CS2 Arsenal.">
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Be+Vietnam+Pro:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body data-page="register">
+    <a class="skip-link" href="#main">Bỏ qua điều hướng</a>
+    <div id="siteHeader"></div>
 
-<header class="header">
-    <div class="container nav-box">
-        <a class="logo" href="index.html">CS2 <span>ARSENAL</span></a>
-        <button class="menu-btn" id="menuBtn">☰</button>
-        <nav id="mainNav">
-            <a href="index.html">Trang chủ</a>
-            <a href="detail.html?weapon=ak47">Vũ khí</a>
-            <a class="active" href="register.html">Đăng ký</a>
-            <a href="login.html">Đăng nhập</a>
-            <a href="contact.html">Contact</a>
-        </nav>
-    </div>
-</header>
+    <main id="main">
+        <section class="form-section">
+            <div class="form-card">
+                <h1>Đăng ký</h1>
+                <p class="form-note">Tạo tài khoản để lưu thông tin trên trình duyệt này.</p>
 
-<main>
-    <section class="form-section">
-        <div class="form-card">
-            <p class="small-title">CS2 ARSENAL ACCOUNT</p>
-            <h1>ĐĂNG KÝ</h1>
-            <p class="form-note">Tạo tài khoản demo cho website Frontend.</p>
+                <form id="registerForm" novalidate>
+                    <label for="registerName">Họ và tên</label>
+                    <input id="registerName" type="text" placeholder="Nguyễn Văn A" autocomplete="name">
+                    <p class="field-error" id="registerNameError"></p>
 
-            <form id="registerForm">
-                <label for="registerName">Họ và tên</label>
-                <input id="registerName" type="text" placeholder="Nguyễn Văn A">
+                    <label for="registerEmail">Email</label>
+                    <input id="registerEmail" type="email" placeholder="example@gmail.com" autocomplete="email">
+                    <p class="field-error" id="registerEmailError"></p>
 
-                <label for="registerEmail">Email</label>
-                <input id="registerEmail" type="email" placeholder="example@gmail.com">
+                    <label for="registerPassword">Mật khẩu</label>
+                    <div class="password-box">
+                        <input id="registerPassword" type="password" placeholder="Ít nhất 6 ký tự" autocomplete="new-password">
+                        <button type="button" class="show-password" data-target="registerPassword">Hiện</button>
+                    </div>
+                    <div class="strength" id="strengthBar" data-level="0"><i></i><i></i><i></i><i></i></div>
+                    <p class="strength-text" id="strengthText">Độ mạnh mật khẩu</p>
+                    <p class="field-error" id="registerPasswordError"></p>
 
-                <label for="registerPassword">Mật khẩu</label>
-                <div class="password-box">
-                    <input id="registerPassword" type="password" placeholder="Ít nhất 6 ký tự">
-                    <button type="button" class="show-password" data-target="registerPassword">Hiện</button>
-                </div>
+                    <label for="registerConfirm">Nhập lại mật khẩu</label>
+                    <div class="password-box">
+                        <input id="registerConfirm" type="password" placeholder="Nhập lại mật khẩu" autocomplete="new-password">
+                        <button type="button" class="show-password" data-target="registerConfirm">Hiện</button>
+                    </div>
+                    <p class="field-error" id="registerConfirmError"></p>
 
-                <label for="registerConfirm">Nhập lại mật khẩu</label>
-                <div class="password-box">
-                    <input id="registerConfirm" type="password" placeholder="Nhập lại mật khẩu">
-                    <button type="button" class="show-password" data-target="registerConfirm">Hiện</button>
-                </div>
+                    <button class="btn full-btn" type="submit" id="registerSubmit">Tạo tài khoản</button>
+                    <p id="registerMessage" class="form-message" role="alert"></p>
+                </form>
 
-                <button class="btn full-btn" type="submit">TẠO TÀI KHOẢN</button>
-                <p id="registerMessage" class="form-message"></p>
-            </form>
+                <p class="switch-form">Đã có tài khoản? <a href="login.html">Đăng nhập</a></p>
+            </div>
+        </section>
+    </main>
 
-            <p class="switch-form">Đã có tài khoản? <a href="login.html">Đăng nhập</a></p>
-        </div>
-    </section>
-</main>
+    <div id="siteFooter"></div>
 
-<footer class="footer">
-    <div class="copyright">© 2026 CS2 Arsenal</div>
-</footer>
-
-<script src="js/script.js"></script>
+    <noscript><p style="padding:16px;text-align:center">Website cần bật JavaScript để hiển thị dữ liệu vũ khí.</p></noscript>
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/auth.js"></script>
 </body>
 </html>

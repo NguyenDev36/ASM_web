@@ -1,7 +1,8 @@
-// ===============================
-// CS2 ARSENAL - JAVASCRIPT
-// Full weapon database
-// ===============================
+/* ==========================================================
+   CS2 ARSENAL - data.js
+   Dữ liệu vũ khí / trang bị (giữ nguyên từ bản gốc)
+   + thông số chiến đấu tham khảo + danh mục.
+   ========================================================== */
 
 const weapons = [
     {
@@ -512,377 +513,102 @@ const equipment = [
 
 const weaponImageAssets = { "glock18": "glock", "p2000": "hkp2000", "usp-s": "usp_silencer", "dual-berettas": "elite", "p250": "p250", "cz75-auto": "cz75a", "five-seven": "fiveseven", "tec-9": "tec9", "r8-revolver": "revolver", "desert-eagle": "deagle", "mac-10": "mac10", "ump-45": "ump45", "mp9": "mp9", "pp-bizon": "bizon", "mp5-sd": "mp5sd", "mp7": "mp7", "p90": "p90", "galil-ar": "galilar", "famas": "famas", "ak47": "ak47", "m4a1-s": "m4a1_silencer", "m4a4": "m4a1", "sg553": "sg556", "aug": "aug", "m14": null, "ssg08": "ssg08", "awp": "awp", "g3sg1": "g3sg1", "scar20": "scar20", "nova": "nova", "sawed-off": "sawedoff", "mag7": "mag7", "xm1014": "xm1014", "negev": "negev", "m249": "m249", "knife": "knife_t", "zeus-x27": "taser", "decoy": "decoy", "flashbang": "flashbang", "he-grenade": "hegrenade", "smoke": "smokegrenade", "molotov": "molotov", "incendiary": "incgrenade", "c4": "c4", "medi-shot": "healthshot" };
 
+
+/* ---------- Danh mục (thứ tự hiển thị) ---------- */
+const CATEGORIES = [
+    { key: "Pistol",       label: "Súng ngắn",        desc: "Vũ khí phụ, rẻ và linh hoạt" },
+    { key: "SMG",          label: "Tiểu liên",        desc: "Giá mềm, cơ động, hợp round eco" },
+    { key: "Rifle",        label: "Súng trường",      desc: "Xương sống của mọi round full buy" },
+    { key: "Sniper Rifle", label: "Súng bắn tỉa",     desc: "Sát thương lớn, bắn xa" },
+    { key: "Shotgun",      label: "Shotgun",          desc: "Mạnh ở cự ly gần" },
+    { key: "Machine Gun",  label: "Súng máy",         desc: "Băng đạn lớn, di chuyển chậm" },
+    { key: "Knife",        label: "Dao",              desc: "Vũ khí cận chiến mặc định" },
+    { key: "Zeus",         label: "Zeus",             desc: "Thiết bị điện tầm gần" },
+    { key: "Grenade",      label: "Lựu đạn",          desc: "Khói, flash, nổ, lửa" },
+    { key: "C4",           label: "C4",               desc: "Mục tiêu của phe T" },
+    { key: "Consumable",   label: "Vật phẩm hồi phục", desc: "Hồi máu nhanh" }
+];
+
+/* ---------- Thông số chiến đấu (tham khảo) ----------
+   Thứ tự: [sát thương, tốc độ bắn (phát/phút), đạn trong băng, đạn dự trữ,
+            xuyên giáp (%), tiền thưởng khi hạ gục ($), tốc độ di chuyển]
+   Lưu ý: thông số có thể thay đổi theo từng bản cập nhật của Valve. */
+const STAT_KEYS = ["damage", "rpm", "mag", "reserve", "armorPen", "reward", "speed"];
+const STATS_RAW = {
+    "glock18": [30, 400, 20, 120, 47, 300, 240],
+    "p2000": [35, 352, 13, 52, 50.5, 300, 240],
+    "usp-s": [35, 352, 12, 24, 50.5, 300, 240],
+    "dual-berettas": [38, 500, 30, 120, 57.5, 300, 240],
+    "p250": [38, 400, 13, 26, 64, 300, 240],
+    "cz75-auto": [31, 600, 12, 12, 77.7, 100, 240],
+    "five-seven": [32, 400, 20, 100, 91.2, 300, 240],
+    "tec-9": [33, 500, 18, 90, 90.7, 300, 240],
+    "r8-revolver": [86, 120, 8, 8, 93, 300, 220],
+    "desert-eagle": [63, 267, 7, 35, 93.2, 300, 230],
+    "mac-10": [29, 800, 30, 100, 57.5, 600, 240],
+    "ump-45": [35, 666, 25, 100, 65, 600, 230],
+    "mp9": [26, 857, 30, 120, 60, 600, 240],
+    "pp-bizon": [27, 750, 64, 120, 57.5, 600, 240],
+    "mp5-sd": [27, 750, 30, 120, 62.5, 600, 235],
+    "mp7": [29, 750, 30, 120, 62.5, 600, 220],
+    "p90": [26, 857, 50, 100, 69, 300, 230],
+    "galil-ar": [30, 666, 35, 90, 77.5, 300, 215],
+    "famas": [30, 666, 25, 90, 70, 300, 220],
+    "ak47": [36, 600, 30, 90, 77.5, 300, 215],
+    "m4a1-s": [38, 600, 25, 75, 70, 300, 225],
+    "m4a4": [33, 666, 30, 90, 70, 300, 225],
+    "sg553": [30, 666, 30, 90, 100, 300, 210],
+    "aug": [28, 666, 30, 90, 90, 300, 220],
+    "ssg08": [88, 48, 10, 90, 85, 300, 230],
+    "awp": [115, 41, 5, 30, 97.5, 100, 200],
+    "g3sg1": [80, 240, 20, 90, 82.5, 300, 215],
+    "scar20": [80, 240, 20, 90, 82.5, 300, 215],
+    "nova": [26, 68, 8, 32, 50, 900, 220],
+    "sawed-off": [32, 68, 7, 32, 75, 900, 210],
+    "mag7": [30, 71, 5, 32, 75, 900, 225],
+    "xm1014": [20, 171, 7, 32, 80, 900, 215],
+    "negev": [35, 800, 150, 200, 75, 150, 150],
+    "m249": [32, 750, 100, 200, 80, 150, 195]
+};
+const PELLETS = { "nova": 9, "sawed-off": 8, "mag7": 8, "xm1014": 6 };
+
+const STAT_DEFS = [
+    { key: "damage",   label: "Sát thương",       unit: "",      best: "max" },
+    { key: "rpm",      label: "Tốc độ bắn",       unit: " rpm",  best: "max" },
+    { key: "mag",      label: "Đạn trong băng",   unit: "",      best: "max" },
+    { key: "reserve",  label: "Đạn dự trữ",       unit: "",      best: "max" },
+    { key: "armorPen", label: "Xuyên giáp",       unit: "%",     best: "max" },
+    { key: "speed",    label: "Tốc độ di chuyển", unit: "",      best: "max" },
+    { key: "reward",   label: "Tiền thưởng hạ gục", unit: "",    best: null  }
+];
+
+/* ---------- Làm giàu dữ liệu ---------- */
+function parsePrice(text) {
+    return Number(String(text).replace(/[^0-9]/g, "")) || 0;
+}
+
+weapons.forEach(function (w) {
+    w.priceNum = parsePrice(w.price);
+    w.image = weaponImageAssets[w.id]
+        ? "https://cdn.cs2c.app/images/econ/weapons/base_weapons/weapon_" + weaponImageAssets[w.id] + "_png.png"
+        : "";
+    const raw = STATS_RAW[w.id];
+    if (raw) {
+        w.stats = {};
+        STAT_KEYS.forEach(function (key, i) { w.stats[key] = raw[i]; });
+        if (PELLETS[w.id]) w.stats.pellets = PELLETS[w.id];
+    } else {
+        w.stats = null;
+    }
+});
+
+equipment.forEach(function (e) {
+    e.priceNum = parsePrice(e.price);
+});
+
+const MAX_WEAPON_PRICE = Math.max.apply(null, weapons.map(function (w) { return w.priceNum; }));
+
 function getItem(id) {
-    return weapons.find(function (item) {
-        return item.id === id;
-    });
+    return weapons.find(function (w) { return w.id === id; }) ||
+           equipment.find(function (e) { return e.id === id; });
 }
-
-function getWeaponImageUrl(item) {
-    const asset = weaponImageAssets[item.id];
-
-    if (!asset) {
-        return "";
-    }
-
-    return "https://cdn.cs2c.app/images/econ/weapons/base_weapons/weapon_" +
-        asset +
-        "_png.png";
-}
-
-function getStatusText(item) {
-    if (item.status === "development") {
-        return "Dữ liệu phát triển";
-    }
-
-    return "Có trong game";
-}
-
-function getTeamText(side) {
-    if (side === "T") return "T";
-    if (side === "CT") return "CT";
-    if (side === "Both") return "T + CT";
-    return side;
-}
-
-function createWeaponCard(item) {
-    const statusClass = item.status === "development" ? "development" : "";
-
-    return `
-        <article class="weapon-card ${statusClass}">
-            <div class="weapon-image">
-                ${getWeaponImageUrl(item)
-            ? `<img src="${getWeaponImageUrl(item)}" alt="${item.name}" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                       <span class="image-fallback">${item.name}</span>`
-            : `<span class="image-fallback no-art">${item.name}<small>NO OFFICIAL ART</small></span>`}
-            </div>
-
-            <div class="weapon-body">
-                <div class="card-top">
-                    <span class="tag">${item.category}</span>
-                    <span class="team-tag">${getTeamText(item.side)}</span>
-                </div>
-
-                <h3>${item.name}</h3>
-                <p>${item.type} • ${item.price}</p>
-
-                ${item.status === "development"
-            ? '<small class="dev-label">Đang ở dữ liệu phát triển</small>'
-            : ''}
-
-                <a class="weapon-link" href="detail.html?weapon=${item.id}">
-                    XEM CHI TIẾT →
-                </a>
-            </div>
-        </article>
-    `;
-}
-
-function createEquipmentCard(item) {
-    return `
-        <article class="equipment-card">
-            <span class="tag">EQUIPMENT</span>
-            <h3>${item.name}</h3>
-            <p>${item.description}</p>
-            <strong>${item.side} • ${item.price}</strong>
-        </article>
-    `;
-}
-
-function renderWeapons() {
-    const weaponList = document.getElementById("weaponList");
-    const emptyMessage = document.getElementById("emptyMessage");
-    const searchInput = document.getElementById("searchInput");
-    const categorySelect = document.getElementById("categorySelect");
-    const teamSelect = document.getElementById("teamSelect");
-    const weaponCount = document.getElementById("weaponCount");
-
-    if (!weaponList) return;
-
-    const searchText = searchInput.value.toLowerCase().trim();
-    const selectedCategory = categorySelect.value;
-    const selectedTeam = teamSelect.value;
-
-    const filtered = weapons.filter(function (item) {
-        const text = (
-            item.name + " " +
-            item.category + " " +
-            item.side + " " +
-            item.type
-        ).toLowerCase();
-
-        const matchText = text.includes(searchText);
-
-        const matchCategory =
-            selectedCategory === "All" ||
-            item.category === selectedCategory;
-
-        const matchTeam =
-            selectedTeam === "All" ||
-            item.side === selectedTeam ||
-            (selectedTeam === "T" && item.side === "Both") ||
-            (selectedTeam === "CT" && item.side === "Both");
-
-        return matchText && matchCategory && matchTeam;
-    });
-
-    weaponList.innerHTML = filtered.map(createWeaponCard).join("");
-    weaponCount.textContent = filtered.length;
-
-    emptyMessage.style.display =
-        filtered.length === 0 ? "block" : "none";
-}
-
-function renderEquipment() {
-    const list = document.getElementById("equipmentList");
-
-    if (!list) return;
-
-    list.innerHTML = equipment.map(createEquipmentCard).join("");
-}
-
-function renderWeaponDetail() {
-    const box = document.getElementById("weaponDetail");
-
-    if (!box) return;
-
-    const params = new URLSearchParams(window.location.search);
-    const id = params.get("weapon") || "ak47";
-    const item = getItem(id);
-
-    if (!item) {
-        box.innerHTML = `
-            <div class="info-box">
-                <h2>Không tìm thấy vũ khí</h2>
-                <p>Hãy quay lại trang chủ và chọn lại vũ khí.</p>
-            </div>
-        `;
-        return;
-    }
-
-    const isDevelopment = item.status === "development";
-
-    box.innerHTML = `
-        <div class="detail-layout">
-            <div class="detail-image">
-                ${getWeaponImageUrl(item)
-            ? `<img src="${getWeaponImageUrl(item)}" alt="${item.name}" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                       <span class="image-fallback">${item.name}</span>`
-            : `<span class="image-fallback no-art">${item.name}<small>NO OFFICIAL ART</small></span>`}
-            </div>
-
-            <div class="detail-content">
-                <div class="detail-tags">
-                    <span class="tag">${item.category.toUpperCase()}</span>
-                    <span class="team-tag">${getTeamText(item.side)}</span>
-                </div>
-
-                <h1>${item.name}</h1>
-
-                <p>${item.description}</p>
-
-                <table class="stats-table">
-                    <tr>
-                        <td>Loại</td>
-                        <td>${item.category}</td>
-                    </tr>
-                    <tr>
-                        <td>Phe</td>
-                        <td>${getTeamText(item.side)}</td>
-                    </tr>
-                    <tr>
-                        <td>Giá trong database</td>
-                        <td>${item.price}</td>
-                    </tr>
-                    <tr>
-                        <td>Text trong database</td>
-                        <td>${item.text}</td>
-                    </tr>
-                    <tr>
-                        <td>Loại</td>
-                        <td>${item.type}</td>
-                    </tr>
-                    <tr>
-                        <td>Trạng thái</td>
-                        <td>${getStatusText(item)}</td>
-                    </tr>
-                </table>
-
-                <div class="detail-note">
-                    ${isDevelopment
-            ? "M14 hiện được liệt kê trong dữ liệu build hiện tại, nhưng chưa được Valve xác nhận là vũ khí có thể sử dụng công khai. Vì vậy website đánh dấu riêng mục này."
-            : "Thông tin được trình bày trong phạm vi gameplay của Counter-Strike 2."}
-                </div>
-
-                <a class="btn" href="index.html#weapons">← QUAY LẠI DANH SÁCH</a>
-            </div>
-        </div>
-    `;
-}
-
-// Menu mobile
-const menuBtn = document.getElementById("menuBtn");
-const mainNav = document.getElementById("mainNav");
-
-if (menuBtn && mainNav) {
-    menuBtn.addEventListener("click", function () {
-        mainNav.classList.toggle("show");
-    });
-}
-
-// Search + category + team
-const searchInput = document.getElementById("searchInput");
-const categorySelect = document.getElementById("categorySelect");
-const teamSelect = document.getElementById("teamSelect");
-
-if (searchInput) searchInput.addEventListener("input", renderWeapons);
-if (categorySelect) categorySelect.addEventListener("change", renderWeapons);
-if (teamSelect) teamSelect.addEventListener("change", renderWeapons);
-
-// Category cards
-const categoryButtons = document.querySelectorAll(".category-btn");
-
-categoryButtons.forEach(function (button) {
-    button.addEventListener("click", function () {
-        const category = button.dataset.category;
-
-        if (categorySelect) {
-            categorySelect.value = category;
-            renderWeapons();
-
-            document.getElementById("weapons").scrollIntoView({
-                behavior: "smooth"
-            });
-        }
-    });
-});
-
-// ===============================
-// REGISTER
-// ===============================
-
-const registerForm = document.getElementById("registerForm");
-
-if (registerForm) {
-    registerForm.addEventListener("submit", function (event) {
-        event.preventDefault();
-
-        const name = document.getElementById("registerName").value.trim();
-        const email = document.getElementById("registerEmail").value.trim();
-        const password = document.getElementById("registerPassword").value;
-        const confirm = document.getElementById("registerConfirm").value;
-        const message = document.getElementById("registerMessage");
-
-        if (name === "" || email === "" || password === "" || confirm === "") {
-            message.textContent = "Vui lòng nhập đầy đủ thông tin.";
-            return;
-        }
-
-        if (password.length < 6) {
-            message.textContent = "Mật khẩu phải có ít nhất 6 ký tự.";
-            return;
-        }
-
-        if (password !== confirm) {
-            message.textContent = "Mật khẩu nhập lại không giống nhau.";
-            return;
-        }
-
-        const user = {
-            name: name,
-            email: email,
-            password: password
-        };
-
-        localStorage.setItem("cs2User", JSON.stringify(user));
-        message.textContent = "Đăng ký thành công! Chuyển sang trang đăng nhập...";
-
-        setTimeout(function () {
-            window.location.href = "login.html";
-        }, 1000);
-    });
-}
-
-// ===============================
-// LOGIN
-// ===============================
-
-const loginForm = document.getElementById("loginForm");
-
-if (loginForm) {
-    loginForm.addEventListener("submit", function (event) {
-        event.preventDefault();
-
-        const email = document.getElementById("loginEmail").value.trim();
-        const password = document.getElementById("loginPassword").value;
-        const message = document.getElementById("loginMessage");
-
-        if (email === "" || password === "") {
-            message.textContent = "Vui lòng nhập email và mật khẩu.";
-            return;
-        }
-
-        const savedUser = localStorage.getItem("cs2User");
-
-        if (!savedUser) {
-            message.textContent = "Chưa có tài khoản. Hãy đăng ký trước.";
-            return;
-        }
-
-        const user = JSON.parse(savedUser);
-
-        if (email === user.email && password === user.password) {
-            localStorage.setItem("cs2LoggedIn", "true");
-            message.textContent = "Đăng nhập thành công!";
-        } else {
-            message.textContent = "Email hoặc mật khẩu không đúng.";
-        }
-    });
-}
-
-// Show/hide password
-const passwordButtons = document.querySelectorAll(".show-password");
-
-passwordButtons.forEach(function (button) {
-    button.addEventListener("click", function () {
-        const target = document.getElementById(button.dataset.target);
-
-        if (target.type === "password") {
-            target.type = "text";
-            button.textContent = "Ẩn";
-        } else {
-            target.type = "password";
-            button.textContent = "Hiện";
-        }
-    });
-});
-
-// Contact
-const contactForm = document.getElementById("contactForm");
-
-if (contactForm) {
-    contactForm.addEventListener("submit", function (event) {
-        event.preventDefault();
-
-        const name = document.getElementById("contactName").value.trim();
-        const email = document.getElementById("contactEmail").value.trim();
-        const subject = document.getElementById("contactSubject").value.trim();
-        const content = document.getElementById("contactMessage").value.trim();
-        const message = document.getElementById("contactMessageText");
-
-        if (name === "" || email === "" || subject === "" || content === "") {
-            message.textContent = "Vui lòng nhập đầy đủ thông tin.";
-            return;
-        }
-
-        message.textContent =
-            "Gửi tin nhắn thành công! Đây là chức năng demo Frontend.";
-
-        contactForm.reset();
-    });
-}
-
-// Run
-renderWeapons();
-renderEquipment();
-renderWeaponDetail();

@@ -1,210 +1,107 @@
 <!DOCTYPE html>
 <html lang="vi">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CS2 Arsenal - Weapon Database</title>
+    <title>CS2 Arsenal - Cơ sở dữ liệu vũ khí Counter-Strike 2</title>
+    <meta name="description" content="Tra cứu 45 vũ khí và trang bị Counter-Strike 2: thông số, giá, phe sử dụng. So sánh vũ khí và lập kế hoạch mua đồ.">
+    <meta name="theme-color" content="#0c0e11">
+    <meta property="og:title" content="CS2 Arsenal - Cơ sở dữ liệu vũ khí Counter-Strike 2">
+    <meta property="og:description" content="Tra cứu 45 vũ khí và trang bị Counter-Strike 2: thông số, giá, phe sử dụng. So sánh vũ khí và lập kế hoạch mua đồ.">
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Be+Vietnam+Pro:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
+<body data-page="home">
+    <a class="skip-link" href="#main">Bỏ qua điều hướng</a>
+    <div id="siteHeader"></div>
 
-<body>
-
-    <header class="header">
-        <div class="container nav-box">
-            <a class="logo" href="index.html">CS2 <span>ARSENAL</span></a>
-
-            <button class="menu-btn" id="menuBtn">☰</button>
-
-            <nav id="mainNav">
-                <a class="active" href="index.html">Trang chủ</a>
-                <a href="detail.html?weapon=ak47">Vũ khí</a>
-                <a href="register.html">Đăng ký</a>
-                <a href="login.html">Đăng nhập</a>
-                <a href="contact.html">Contact</a>
-            </nav>
-        </div>
-    </header>
-
-    <main>
+    <main id="main">
         <section class="hero">
             <div class="container hero-content">
-                <div class="hero-text">
-                    <p class="small-title">COUNTER-STRIKE 2 WEAPON DATABASE</p>
-                    <h1>KHÁM PHÁ KHO VŨ KHÍ <span>CS2</span></h1>
-                    <p>
-                        Tìm hiểu các nhóm vũ khí, thông tin cơ bản và đặc điểm
-                        nổi bật của những khẩu súng quen thuộc trong Counter-Strike 2.
+                <div>
+                    <h1>Biết rõ từng khẩu súng trước khi vào round</h1>
+                    <p class="hero-lead">
+                        Tra cứu giá, phe sử dụng và thông số của mọi vũ khí trong Counter-Strike 2,
+                        rồi so sánh hoặc lên kế hoạch mua đồ ngay trên trình duyệt.
                     </p>
-                    <a class="btn" href="#weapons">XEM VŨ KHÍ</a>
+                    <form class="hero-search" id="heroSearch" role="search">
+                        <label class="sr-only" for="heroQuery" style="position:absolute;left:-999px">Tìm vũ khí</label>
+                        <input id="heroQuery" type="search" placeholder="Tìm AK-47, AWP, Glock-18..." autocomplete="off">
+                        <button type="submit">Tìm kiếm</button>
+                    </form>
+                    <div class="quick-picks" id="quickPicks"><span>Hay tra cứu:</span></div>
                 </div>
 
-                <div class="hero-card">
-                    <div class="hero-gun">AK-47</div>
-                    <p>RIFLE / T-SIDE</p>
-                </div>
+                <aside class="inspect" id="inspectPanel" aria-label="Vũ khí nổi bật hôm nay"></aside>
             </div>
         </section>
 
-        <section class="section" id="about">
+        <div class="container">
+            <div class="stat-strip" id="statStrip"></div>
+        </div>
+
+        <section class="section" id="categories">
             <div class="container">
                 <div class="section-title">
-                    <p>GIỚI THIỆU</p>
-                    <h2>CS2 ARSENAL LÀ GÌ?</h2>
+                    <h2>Chọn theo loại vũ khí</h2>
+                    <p>Bấm vào một nhóm để xem danh sách đã được lọc sẵn.</p>
                 </div>
+                <div class="category-grid" id="categoryGrid"></div>
+            </div>
+        </section>
 
-                <div class="about-grid">
-                    <div class="info-box">
-                        <h3>Weapon Database</h3>
-                        <p>
-                            Website được thực hiện cho bài tập lập trình Web Frontend.
-                            Nội dung tập trung vào việc trình bày thông tin vũ khí trong game
-                            Counter-Strike 2 theo cách đơn giản và dễ xem.
-                        </p>
+        <section class="section alt" id="featured">
+            <div class="container">
+                <div class="section-title row">
+                    <div>
+                        <h2>Vũ khí được dùng nhiều</h2>
+                        <p>Những lựa chọn quen thuộc ở các round full buy và pistol.</p>
                     </div>
+                    <a class="btn ghost" href="weapons.html">Xem cả 45 vũ khí</a>
+                </div>
+                <div class="weapon-grid" id="featuredList"></div>
+            </div>
+        </section>
 
-                    <div class="info-box">
-                        <h3>Giao diện dễ sử dụng</h3>
-                        <p>
-                            Người dùng có thể tìm kiếm, lọc theo loại vũ khí và mở trang
-                            chi tiết của từng khẩu súng.
-                        </p>
-                    </div>
+        <section class="section" id="tools">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Công cụ cho người chơi</h2>
+                </div>
+                <div class="tool-grid">
+                    <a class="tool-card" href="compare.html">
+                        <h3>So sánh vũ khí</h3>
+                        <p>Đặt tối đa 3 vũ khí cạnh nhau để xem sát thương, tốc độ bắn, xuyên giáp và giá. Giá trị tốt nhất được tô sáng.</p>
+                        <span>Mở trang so sánh</span>
+                    </a>
+                    <a class="tool-card" href="loadout.html">
+                        <h3>Lập kế hoạch mua</h3>
+                        <p>Nhập số tiền của round, chọn phe và thử các bộ trang bị. Bạn thấy ngay còn dư bao nhiêu tiền.</p>
+                        <span>Thử mua đồ</span>
+                    </a>
                 </div>
             </div>
         </section>
 
-        <section class="section dark-section" id="categories">
+        <section class="section alt" id="equipment">
             <div class="container">
                 <div class="section-title">
-                    <p>DANH MỤC</p>
-                    <h2>LOẠI VŨ KHÍ</h2>
+                    <h2>Trang bị</h2>
+                    <p id="equipmentNote"></p>
                 </div>
-
-                <div class="category-grid">
-                    <button class="category-card category-btn" data-category="Pistol">
-                        <span>01</span><strong>Pistols</strong><small>10 vũ khí</small>
-                    </button>
-                    <button class="category-card category-btn" data-category="SMG">
-                        <span>02</span><strong>SMGs</strong><small>7 vũ khí</small>
-                    </button>
-                    <button class="category-card category-btn" data-category="Rifle">
-                        <span>03</span><strong>Rifles</strong><small>8 vũ khí</small>
-                    </button>
-                    <button class="category-card category-btn" data-category="Sniper Rifle">
-                        <span>04</span><strong>Sniper</strong><small>4 vũ khí</small>
-                    </button>
-                    <button class="category-card category-btn" data-category="Shotgun">
-                        <span>05</span><strong>Shotgun</strong><small>4 vũ khí</small>
-                    </button>
-                    <button class="category-card category-btn" data-category="Machine Gun">
-                        <span>06</span><strong>Machine Gun</strong><small>2 vũ khí</small>
-                    </button>
-                    <button class="category-card category-btn" data-category="Zeus">
-                        <span>07</span><strong>Zeus</strong><small>1 vũ khí</small>
-                    </button>
-                    <button class="category-card category-btn" data-category="Grenade">
-                        <span>08</span><strong>Grenades</strong><small>6 vũ khí</small>
-                    </button>
-                    <button class="category-card category-btn" data-category="C4">
-                        <span>09</span><strong>C4</strong><small>1 vũ khí</small>
-                    </button>
-                    <button class="category-card category-btn" data-category="Consumable">
-                        <span>10</span><strong>Consumable</strong><small>1 mục</small>
-                    </button>
-                </div>
-            </div>
-        </section>
-
-        <section class="section" id="weapons">
-            <div class="container">
-                <div class="section-title">
-                    <p>DANH SÁCH</p>
-                    <h2>VŨ KHÍ NỔI BẬT</h2>
-                </div>
-
-                <div class="toolbar">
-                    <input id="searchInput" type="text" placeholder="Tìm kiếm 45 vũ khí: AK-47, AWP, Glock...">
-
-                    <select id="categorySelect">
-                        <option value="All">Tất cả loại</option>
-                        <option value="Pistol">Pistol</option>
-                        <option value="SMG">SMG</option>
-                        <option value="Rifle">Rifle</option>
-                        <option value="Sniper Rifle">Sniper Rifle</option>
-                        <option value="Shotgun">Shotgun</option>
-                        <option value="Machine Gun">Machine Gun</option>
-                        <option value="Knife">Knife</option>
-                        <option value="Zeus">Zeus</option>
-                        <option value="Grenade">Grenade</option>
-                        <option value="C4">C4</option>
-                        <option value="Consumable">Consumable</option>
-                    </select>
-
-                    <select id="teamSelect">
-                        <option value="All">T + CT</option>
-                        <option value="T">Chỉ phe T</option>
-                        <option value="CT">Chỉ phe CT</option>
-                        <option value="Both">Cả hai phe</option>
-                    </select>
-                </div>
-
-                <div class="database-summary">
-                    <strong><span id="weaponCount">45</span> mục</strong>
-                    <span>• 45 weapon entries trong database hiện tại</span>
-                </div>
-
-                <div id="weaponList" class="weapon-grid"></div>
-                <p id="emptyMessage" class="empty-message">Không tìm thấy vũ khí phù hợp.</p>
-            </div>
-        </section>
-
-        <section class="section dark-section" id="equipment">
-            <div class="container">
-                <div class="section-title">
-                    <p>TRANG BỊ</p>
-                    <h2>EQUIPMENT</h2>
-                </div>
-
-                <p class="section-note">
-                    Ngoài 45 weapon entries, database hiện tại còn tách riêng 5 món trang bị.
-                </p>
-
-                <div id="equipmentList" class="equipment-grid">
-                </div>
-
+                <div id="equipmentList" class="equipment-grid"></div>
             </div>
         </section>
     </main>
 
-    <footer class="footer">
-        <div class="container footer-box">
-            <div>
-                <a class="logo" href="index.html">CS2 <span>ARSENAL</span></a>
-                <p>Website Frontend giới thiệu thông tin vũ khí trong CS2.</p>
-            </div>
-            <div style="display: flex; flex-direction: row; margin-left: 100px;">
-                <div>
-                    <p><strong>Điều hướng</strong></p>
-                    <a href="index.html">Trang chủ</a>
-                    <a href="register.html">Đăng ký</a>
-                    <a href="login.html">Đăng nhập</a>
-                    <a href="contact.html">Contact</a>
-                </div>
-                <div style="position: relative; left: 100px; ">
-                    <p><strong>Điều hướng</strong></p>
-                    <a href="index.html">Trang chủ</a>
-                    <a href="register.html">Đăng ký</a>
-                    <a href="login.html">Đăng nhập</a>
-                    <a href="contact.html">Contact</a>
-                </div>
-            </div>
-        </div>
+    <div id="siteFooter"></div>
 
-        <div class="copyright">© 2026 CS2 Arsenal - Student Frontend Project</div>
-    </footer>
-
-    <script src="js/script.js"></script>
+    <noscript><p style="padding:16px;text-align:center">Website cần bật JavaScript để hiển thị dữ liệu vũ khí.</p></noscript>
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/home.js"></script>
 </body>
-
 </html>
